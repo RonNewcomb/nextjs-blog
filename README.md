@@ -11,7 +11,6 @@ Required Linux packages for Cypress:
 Interesting folders:
 
 - `/cypress/` holds testing code and some test results.
-- `/data/` if present holds data which may be more appropriate for MongoDB or other doc storage. It isn't necessary.
 - `/public/` holds assets used at run-time, such as logos, images, favicon, etc.
 - `/src/` is the source code for the app. React, NextJS.
   - `/src/components/` has the majority of source code for the app. These implement the page-level components.

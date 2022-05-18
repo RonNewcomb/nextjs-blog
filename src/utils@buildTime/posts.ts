@@ -1,33 +1,24 @@
 import fs from 'fs';
-import matter from 'gray-matter';
 import path from 'path';
 
-const postsDirectory = path.join(process.cwd(), 'data/posts');
+const postsDirectory = path.join(process.cwd(), 'public/data/posts');
 
 export interface IPost {
   id: string;
   title: string;
-  date: Date;
+  date: string;
 }
 
 export function getSortedPostsData() {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
     .map(fileName => {
-      const fileContents = fs.readFileSync(path.join(postsDirectory, fileName), 'utf8');
-      const matterResult = matter(fileContents);
+      //const fileContents = fs.readFileSync(path.join(postsDirectory, fileName), 'utf8');
       return {
         id: fileName.replace(/\.md$/, ''),
-        ...matterResult.data,
+        date: new Date().toString(),
+        title: fileName.replaceAll('_', ' '),
       } as IPost;
     })
-    .sort(({ date: a }, { date: b }) => {
-      if (a < b) {
-        return 1;
-      } else if (a > b) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
+    .sort(({ date: a }, { date: b }) => b.localeCompare(a));
 }
