@@ -15,7 +15,7 @@ Interesting folders:
 - `/src/` is the source code for the app: React+Typescript.
   - `/src/components/` has the majority of source code for the app. These implement the page-level components.
   - `/src/pages/` mirrors the URL structure. For example, http://localhost:3000/posts/firstpost displays the default component in `/src/pages/posts/firstpost.tsx`
-    - `/src/pages/_app.tsx` is a file which wraps the entire app. To define a webapp's typical header/footer/leftnav put it in here. URL Routing will change what "Component" is passed into it.
+    - `/src/pages/_app.tsx` is a component which wraps the entire app. Useful to import global CSS.
     - `/src/pages/index.tsx` is the default component displayed when there is no path in the URL, as in http://localhost:3000
   - `/src/styles/` has [SASS](https://sass-lang.com/) `.scss` files. SASS is a pre-processor for CSS with variables, imports, and exports to javascript.
   - `/src/utils@buildTime/` has javascript that runs on the build server, at build time. Despite looking like these functions look like they're being called from the app from `getStaticProps()` they never appear in the browser. `getStaticProps()` is a NextJS feature.

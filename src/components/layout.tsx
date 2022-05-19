@@ -14,7 +14,7 @@ type Props = {
   home?: boolean;
 };
 
-export default function Layout({ children, title = 'This is the default title', home = false }: Props) {
+export default function Layout({ children, home = false }: Props) {
   return (
     <div className={styles.container}>
       <Head>

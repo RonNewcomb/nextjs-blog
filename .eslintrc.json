@@ -1,0 +1,20 @@
+{
+  "plugins": ["cypress", "chai-friendly", "jsx-a11y" /* nextJS is implied */],
+  "extends": [
+    "eslint:recommended",
+    "plugin:cypress/recommended",
+    "plugin:chai-friendly/recommended",
+    "plugin:jsx-a11y/recommended",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    "jsx-a11y/anchor-is-valid": [
+      "error", // NextJS requires <Link href...><a>...</a></Link> which upsets a11y since href is not on <a>
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
+  }
+}
