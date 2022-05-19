@@ -1,5 +1,11 @@
 This is a starter template for React+Typescript+NextJS projects.
 
+# Commands
+
+- `npm run dev` to run the web app in developer mode, with hot-reload on each code change.
+- `npm run build` to build the app, usually a production build.
+- `npm run start` to run the built app.
+
 # Folder/File Structure
 
 Interesting folders:
@@ -51,21 +57,30 @@ Required Linux packages for Cypress:
 
 This allows you to run cypress headlessly with `npm run tests`, wherein it outputs to the terminal in which it was ran, as with most test solutions
 
-## Optional GUI Installation
+## Optional GUI Installation for Cypress Interactive
 
-Cypress has an interactive UI for viewing and debugging tests, complete with screenshots and video. Install a GUI for WSL2, with [VcXsrv](https://sourceforge.net/projects/vcxsrv/). This is a Windows .exe file that grants an Xserver to the Linux within. You'll also need to append these lines to your `.bashrc` or equivalent:
+Cypress has an interactive UI for viewing and debugging tests, complete with screenshots and video, but it's a bit involved to get running on WSL.
 
-```
-# set DISPLAY variable to the IP automatically assigned to WSL2
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-# Automatically start D-Bus to allow communication with Cypress GUI app
-sudo /etc/init.d/dbus start &> /dev/null
-```
+First, install a GUI bridge for WSL2, with [VcXsrv](https://sourceforge.net/projects/vcxsrv/). This is a Windows .exe installer that creates an Xserver that the Linux within WSL can use. Window's name for it is **XLaunch**.
 
-Launch the Windows program with the `XLaunch` app. Choose options:
+You'll next need to open a hole in Windows Defender to allow WSL to talk to the XLaunch. Go to Control Panel > System and Security > Windows Defender Firewall > Advanced Settings > Inbound Rules (wow what a big list!) > New Rule.
+
+- Rule Type: Program
+- Program: Browse to C:\Program Files\VcXsrv\VcXsrv.exe
+- Action: Allow the connection
+- Profile: all boxes are checked
+- Name: anything you want, but something you can find in the big list of inbound rules, like "Cypress" or "XLaunch for Cypress"
+
+## Run Cypress Interactive
+
+Launch the Windows program `XLaunch`. For the first launch, choose options:
 
 - defaults (Multiple windows, Display number -1)
 - defaults (Start no client)
-- defaults + Disable access control (accept all connections)
+- defaults + **Disable access control** (accept all connections)
 
-Now we can run `npm run tests:interactive` for the full experience.
+The XLaunch icon will appear in the windows system tray.
+
+If you haven't already, ensure the app is built, `npm run build`, and the webapp is currently running, `npm run start`. The latter command will own that terminal.
+
+In another Linux terminal, run `./go-cypress.sh` to set the DISPLAY env var and set up the dbus (sudo password required), and it will issue the final `npm run tests:interactive` for you.
