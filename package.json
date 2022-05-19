@@ -4,9 +4,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "tests": "next build && (next start &) && cypress run",
-    "cypress:interactive": "cypress open",
-    "cypress": "cypress run"
+    "bsr": "next build && (next start &) && cypress run",
+    "tests:interactive": "cypress open",
+    "tests": "cypress run"
   },
   "dependencies": {
     "next": "latest",
