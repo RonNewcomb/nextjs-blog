@@ -10,7 +10,7 @@ sudo /etc/init.d/dbus start &> /dev/null
 # compile and run
 # npm run build
 # npm run start  # this will never finish and own the terminal
-echo Assuming the webapp to test is already running in a different window!
+echo Assuming the webapp to test is already running in a different window...
 
 # go
 npm run tests:interactive
