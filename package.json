@@ -4,12 +4,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
+    "test": "cypress run-ct && cypress run",
     "bsr": "next build && (next start &) && cypress run",
-    "tests:interactive": "cypress open",
-    "tests": "cypress run",
-    "testc": "cypress run-ct",
-    "testc:interactive": "cypress open-ct",
-    "lint": "next lint"
+    "testpages": "cypress run",
+    "testcomps": "cypress run-ct",
+    "testpages:interactive": "cypress open",
+    "testcomps:interactive": "cypress open-ct"
   },
   "dependencies": {
     "next": "latest",
